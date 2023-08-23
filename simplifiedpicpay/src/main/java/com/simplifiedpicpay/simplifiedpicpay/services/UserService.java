@@ -1,12 +1,14 @@
 package com.simplifiedpicpay.simplifiedpicpay.services;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.simplifiedpicpay.simplifiedpicpay.domain.user.User;
 import com.simplifiedpicpay.simplifiedpicpay.domain.user.UserType;
+import com.simplifiedpicpay.simplifiedpicpay.dtos.UserDTO;
 import com.simplifiedpicpay.simplifiedpicpay.repositories.UserRepository;
 
 @Service
@@ -25,8 +27,18 @@ public class UserService {
         }
     }
 
-    public User findUserBYId(Long id) throws Exception {
+    public User findUserById(Long id) throws Exception {
         return this.repository.findUserById(id).orElseThrow(() -> new Exception("Usuário não encontrado"));
+    }
+
+    public List<User> getAllUsers() {
+        return this.repository.findAll();
+    }
+
+    public User createUser(UserDTO data) {
+        User newUser = new User(data);
+        this.saveUser(newUser);
+        return newUser;
     }
 
     public User saveUser(User user) {
