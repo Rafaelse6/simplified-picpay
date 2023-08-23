@@ -34,6 +34,7 @@ public class User {
         this.userType = data.userType();
         this.password = data.password();
         this.email = data.email();
+        this.document = data.document();
     }
 
     @Id
