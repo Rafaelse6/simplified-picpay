@@ -28,8 +28,8 @@ public class TransactionService {
     private RestTemplate restTemplate;
 
     public void createTransaction(TransactionDTO transaction) throws Exception {
-        User sender = this.userService.findUserBYId(transaction.senderId());
-        User receiver = this.userService.findUserBYId(transaction.receiverId());
+        User sender = this.userService.findUserById(transaction.senderId());
+        User receiver = this.userService.findUserById(transaction.receiverId());
 
         userService.validateTransaction(sender, transaction.value());
 
